@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
 
 <head>
   <title>Prototype</title>
@@ -33,6 +33,7 @@
    background-repeat: no-repeat;
    background-position:center;
    background-size:100%;
+   background-attachment: fixed;
  }
 .backgrd{
 background-color: rgba(35,7,113,0.1);
@@ -68,7 +69,10 @@ tr:hover {
 .blackbrd{
   background-color:black;
 }
-
+#panelBody{
+  height:450px;
+  width:1140px;
+}
 </style>
 
 <body class="main">
@@ -78,44 +82,7 @@ tr:hover {
 <!-- Arranca el ejercicio -->
 
 <div class="panel panel-default backgrd test">
-<div class="panel-body" ng-init="chars = [{nombre:'Juan',temporada:'1',capitulo:'1'},{nombre:'Sebastian',temporada:'3',capitulo:'5'},{nombre:'Leandro',temporada:'2',capitulo:'3'},{nombre:'Javier',temporada:'2',capitulo:'4'} ]">
-
-  <div ng-model="search" style="padding-top:50px;">
-  <!-- PARA QUE SIRVE EL search.$??es un comodin --> 
-  <form class="form-inline">
-      <br><br><br><br><br><br><br><br>
-      <label class="" >Nombre:</label>
-      <input type="text" ng-model="search.nombre" class="filter form-control" />
-      <label>Temporada</label>
-      <select class="form-control" ng-init="temporadas=['','1','2','3','4','5','6','7','8']" ng-model="search.temporada">
-        <option ng-repeat="temporada in temporadas" value="{{temporada}}">{{temporada}}</option>
-      </select>
-      <label>Capitulo</label>
-      <select class="form-control" ng-init="capitulos=['','1','2','3','4','5','6','7','8','9','10']" ng-model="search.capitulo">
-        <option ng-repeat="capitulo in capitulos" value="{{capitulo}}">{{capitulo}}</option>
-      </select>
-      <button class="btn btn-danger" id="reset" ng-click="search=undefined">Reset</button>
-  </form>
-  </div>
-  <br>
-  <div class="tabl" ng-init="columnas = [{name:'Nombre', temp:'Temporada', cap:'Capitulo',lnk:'Links'}]">
-    <table class="table table-bordered white" border="1" >
-      <tr class="blackbrd">
-        <td class="col-md-4 bold" ng-repeat="columna in columnas">{{columna.name}}</td>
-        <td class="col-md-2 bold" ng-repeat="columna in columnas">{{columna.temp}}</td>
-        <td class="col-md-2 bold" ng-repeat="columna in columnas">{{columna.cap}}</td>
-        <td class="col-md-4 bold" ng-repeat="columna in columnas">{{columna.lnk}}</td>
-      </tr>
-      <tr class="table-hover" ng-repeat="character in chars | filter:search:strict"> <!-- PAra que SE USA EL STRICT -->
-        <td>{{character.nombre}}</td>
-        <td>{{character.temporada}}</td>
-        <td>{{character.capitulo}}</td>
-        <td>
-          <a href="">Link 1</a> <a href="">Link 2</a>
-        </td>
-      </tr>
-    </table>
-  <div>
+<div class="panel-body" id="panelBody" ng-view>
 
 </div> <!-- End Example Div -->
 
@@ -127,6 +94,9 @@ tr:hover {
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="MyControllers.js"></script>
+
 </body>
 
 </html>
