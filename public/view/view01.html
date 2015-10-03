@@ -23,7 +23,7 @@
       <td class="col-md-2 bold" ng-repeat="columna in columnas">{{columna.cap}}</td>
       <td class="col-md-4 bold" ng-repeat="columna in columnas">{{columna.lnk}}</td>
     </tr>
-    <tr class="table-hover" ng-repeat="character in chars | filter:search:strict" >
+    <tr class="table-hover" id="charRows" ng-repeat="character in chars | filter:search:strict" >
       <td>{{character.nombre}}</td>
       <td>{{character.temporada}}</td>
       <td>{{character.capitulo}}</td>
